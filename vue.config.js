@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
+  publicPath: '/sw-push/',
   devServer: {
-    publicPath: '/sw-push/',
     host: '0.0.0.0',
     disableHostCheck: true,
     port: 3300
