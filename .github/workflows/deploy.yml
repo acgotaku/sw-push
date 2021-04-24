@@ -1,0 +1,31 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: 'Deploy sw-push'
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Build
+        run: |
+          yarn install
+          yarn build
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          git init
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m 'deploy'
+          git push -f https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
