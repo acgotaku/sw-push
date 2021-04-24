@@ -45,8 +45,8 @@ interface PushSubscriptionJSON {
 @Component
 export default class Home extends Vue {
   status = '';
-  vapidPublicKey = '';
-  vapidPrivateKey = '';
+  vapidPublicKey = localStorage.getItem('vapidPublicKey') || '';
+  vapidPrivateKey = localStorage.getItem('vapidPrivateKey') || '';
   subJSON: PushSubscriptionJSON | null = null;
 
   @Watch('isGranted', { immediate: true })
@@ -71,15 +71,21 @@ export default class Home extends Vue {
   }
 
   newKeys(): void {
-    generateNewKeys()
-      .then(keys => {
-        const { publicKey, privateKey } = keys;
-        this.vapidPublicKey = publicKey;
-        this.vapidPrivateKey = privateKey;
-      })
-      .then(() => {
-        this.subscribeNotif();
-      });
+    if (this.showKeys) {
+      this.subscribeNotif();
+    } else {
+      generateNewKeys()
+        .then(keys => {
+          const { publicKey, privateKey } = keys;
+          localStorage.setItem('vapidPublicKey', publicKey);
+          localStorage.setItem('vapidPrivateKey', privateKey);
+          this.vapidPublicKey = publicKey;
+          this.vapidPrivateKey = privateKey;
+        })
+        .then(() => {
+          this.subscribeNotif();
+        });
+    }
   }
 
   subscribeNotif(): void {
