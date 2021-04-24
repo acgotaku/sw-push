@@ -1,0 +1,22 @@
+@import 'ress';
+@import './root.css';
+
+html,
+body {
+  height: 100%;
+  font-family: 'Open Sans', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue',
+    'Hiragino Sans GB', 'WenQuanYi Micro Hei', Arial, sans-serif;
+  color: var(--color-main);
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: var(--color-bg);
+}
+
+a {
+  color: var(--color-main);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-main);
+  }
+}

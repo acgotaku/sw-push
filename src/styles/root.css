@@ -1,0 +1,10 @@
+:root {
+  --color-bg: #f0f1f2;
+  --color-container: #fff;
+  --color-main: rgba(0, 0, 0, 0.85);
+  --color-secondary: rgba(0, 0, 0, 0.65);
+  --color-primary: #1890ff;
+  --color-warning: #f5222d;
+  --color-border: rgba(0, 0, 0, 0.15);
+  --color-hover: rgba(0, 0, 0, 0.04);
+}
