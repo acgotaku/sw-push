@@ -26,7 +26,7 @@ self.addEventListener('notificationclick', function (e) {
   if (action === 'close') {
     notification.close();
   } else {
-    // clients.openWindow('http://www.example.com');
+    self.clients.openWindow('https://acgotaku.github.io/sw-push/');
     notification.close();
   }
 });
@@ -42,7 +42,6 @@ self.addEventListener('push', function (e) {
 
   const options = {
     body: body,
-    icon: 'images/notification-flat.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -51,13 +50,11 @@ self.addEventListener('push', function (e) {
     actions: [
       {
         action: 'explore',
-        title: 'Explore this new world',
-        icon: 'images/checkmark.png'
+        title: 'Explore'
       },
       {
         action: 'close',
-        title: "I don't want any of this",
-        icon: 'images/xmark.png'
+        title: 'Close'
       }
     ]
   };
