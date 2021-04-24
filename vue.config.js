@@ -12,7 +12,7 @@ module.exports = {
     msTileColor: '#000000',
     manifestOptions: {
       short_name: 'SW-PUSH',
-      start_url: '/'
+      start_url: '/sw-push/'
     },
     iconPaths: [],
     workboxPluginMode: 'InjectManifest',
